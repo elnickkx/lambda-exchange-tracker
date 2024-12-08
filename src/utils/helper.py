@@ -25,9 +25,7 @@ import zipfile
 from io import BytesIO
 
 import boto3
-import pandas as pd
 import pytz
-import requests
 from collections import OrderedDict
 
 # from constants import policy_columns

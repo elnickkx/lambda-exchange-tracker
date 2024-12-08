@@ -81,7 +81,7 @@ async def lambda_handler(event, context):
                         {
                             "response": __fetch_exchange_response.dict()["metadata"],
                             "requestMetaData": {
-                                "requestId": req_id,
+                                "requestId": str(req_id),
                                 "errorMessage": "",
                                 "statusCode": 200,
                                 "version": "v1",

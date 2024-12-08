@@ -9,7 +9,7 @@
 
 import logging
 import aiofiles
-import pandas as pd
+
 from bs4 import BeautifulSoup, Tag
 import aiohttp
 import os
@@ -36,7 +36,6 @@ logging.basicConfig(format=loggingFormat)
 __all__ = ["perform_scraping_handling", "__init_website_uri"]
 
 # setting the pd dataframe maximum width
-pd.set_option('display.max_colwidth', None)
 __init_website_uri = constants.scrape_website_uri
 
 
@@ -68,16 +67,20 @@ async def __perform_query_search(*, session: aiohttp, search_href: str) -> typin
 async def __fetch_and_parse_response(date: datetime.date):
     __dynamoDB = ExchangeDynamoDB(table_name=constants.table_name)
     _parsed_map = dict()
-    if response := __dynamoDB.currency_alloc.get_latest_currency_exchange_result(
-            date=date
-    ):
-        for _iter in response.metadata:
-            _parsed_map[_iter.symbol] = _iter.spot_rate
 
+    try:
+        if response := __dynamoDB.currency_alloc.get_latest_currency_exchange_result(
+                date=date
+        ):
+            for _iter in response.metadata:
+                _parsed_map[_iter.symbol] = _iter.spot_rate
+
+            return _parsed_map
+
+    except Exception:
         return _parsed_map
 
-    else:
-        return _parsed_map
+    return _parsed_map
 
 
 async def __check_exchange_fluctuation(

@@ -22,41 +22,14 @@ anyio==4.7.0
     # via
     #   -r requirements.in
     #   httpx
-    #   jupyter-server
-appdirs==1.4.4
-    # via pyppeteer
-appnope==0.1.4
-    # via ipykernel
-argon2-cffi==23.1.0
-    # via jupyter-server
-argon2-cffi-bindings==21.2.0
-    # via argon2-cffi
-arrow==1.3.0
-    # via isoduration
-asttokens==3.0.0
-    # via stack-data
-async-lru==2.0.4
-    # via jupyterlab
-asyncpg==0.30.0
-    # via -r requirements.in
 attrs==24.2.0
-    # via
-    #   aiohttp
-    #   jsonschema
-    #   referencing
+    # via aiohttp
 awscli-local==0.22.0
     # via -r requirements.in
-babel==2.16.0
-    # via jupyterlab-server
 bcrypt==4.2.1
     # via -r requirements.in
 beautifulsoup4==4.12.3
-    # via
-    #   -r requirements.in
-    #   bs4
-    #   nbconvert
-bleach==6.2.0
-    # via nbconvert
+    # via -r requirements.in
 boto3==1.35.76
     # via
     #   -r requirements.in
@@ -68,41 +41,15 @@ botocore==1.35.76
     #   s3transfer
 brotli==1.1.0
     # via -r requirements.in
-bs4==0.0.2
-    # via requests-html
 certifi==2024.8.30
     # via
     #   -r requirements.in
     #   httpcore
     #   httpx
-    #   pyppeteer
-    #   requests
-cffi==1.17.1
-    # via argon2-cffi-bindings
-charset-normalizer==3.4.0
-    # via requests
-comm==0.2.2
-    # via ipykernel
-cssselect==1.2.0
-    # via pyquery
 dataclasses==0.6
     # via -r requirements.in
 dateparser==1.2.0
     # via -r requirements.in
-debugpy==1.8.9
-    # via ipykernel
-decorator==5.1.1
-    # via ipython
-defusedxml==0.7.1
-    # via nbconvert
-executing==2.1.0
-    # via stack-data
-fake-useragent==2.0.1
-    # via requests-html
-fastjsonschema==2.21.1
-    # via nbformat
-fqdn==1.5.1
-    # via jsonschema
 frozenlist==1.5.0
     # via
     #   aiohttp
@@ -115,183 +62,40 @@ httpcore==1.0.7
     # via
     #   -r requirements.in
     #   httpx
-httptools==0.6.4
-    # via -r requirements.in
 httpx==0.28.1
-    # via
-    #   -r requirements.in
-    #   jupyterlab
+    # via -r requirements.in
 idna==3.10
     # via
     #   -r requirements.in
     #   anyio
     #   httpx
-    #   jsonschema
-    #   requests
     #   yarl
-importlib-metadata==8.5.0
-    # via pyppeteer
-importlib-resources==6.4.5
-    # via fake-useragent
 iniconfig==2.0.0
     # via pytest
-ipykernel==6.29.5
-    # via jupyterlab
-ipython==8.30.0
-    # via ipykernel
-isoduration==20.11.0
-    # via jsonschema
-jedi==0.19.2
-    # via ipython
-jinja2==3.1.4
-    # via
-    #   -r requirements.in
-    #   jupyter-server
-    #   jupyterlab
-    #   jupyterlab-server
-    #   nbconvert
 jmespath==1.0.1
     # via
     #   boto3
     #   botocore
-json5==0.10.0
-    # via jupyterlab-server
-jsonpointer==3.0.0
-    # via jsonschema
-jsonschema==4.23.0
-    # via
-    #   jupyter-events
-    #   jupyterlab-server
-    #   nbformat
-jsonschema-specifications==2024.10.1
-    # via jsonschema
-jupyter-client==8.6.3
-    # via
-    #   ipykernel
-    #   jupyter-server
-    #   nbclient
-jupyter-core==5.7.2
-    # via
-    #   ipykernel
-    #   jupyter-client
-    #   jupyter-server
-    #   jupyterlab
-    #   nbclient
-    #   nbconvert
-    #   nbformat
-jupyter-events==0.10.0
-    # via jupyter-server
-jupyter-lsp==2.2.5
-    # via jupyterlab
-jupyter-server==2.14.2
-    # via
-    #   jupyter-lsp
-    #   jupyterlab
-    #   jupyterlab-server
-    #   notebook
-    #   notebook-shim
-jupyter-server-terminals==0.5.3
-    # via jupyter-server
-jupyterlab==4.3.2
-    # via
-    #   -r requirements.in
-    #   notebook
-jupyterlab-pygments==0.3.0
-    # via
-    #   -r requirements.in
-    #   nbconvert
-jupyterlab-server==2.27.3
-    # via
-    #   -r requirements.in
-    #   jupyterlab
-    #   notebook
 localstack-client==2.7
     # via awscli-local
 localstack-sdk-generated==0.0.4
     # via localstack-sdk-python
 localstack-sdk-python==0.0.4
     # via -r requirements.in
-lxml==5.3.0
-    # via pyquery
-markupsafe==3.0.2
-    # via
-    #   -r requirements.in
-    #   jinja2
-    #   nbconvert
-matplotlib-inline==0.1.7
-    # via
-    #   ipykernel
-    #   ipython
-mistune==3.0.2
-    # via nbconvert
 multidict==6.1.0
     # via
     #   aiohttp
     #   yarl
-nbclient==0.10.1
-    # via nbconvert
-nbconvert==7.16.4
-    # via jupyter-server
-nbformat==5.10.4
-    # via
-    #   jupyter-server
-    #   nbclient
-    #   nbconvert
-nest-asyncio==1.6.0
-    # via ipykernel
-notebook==7.3.1
-    # via -r requirements.in
-notebook-shim==0.2.4
-    # via
-    #   -r requirements.in
-    #   jupyterlab
-    #   notebook
-numpy==2.1.3
-    # via pandas
 orjson==3.10.12
     # via -r requirements.in
-overrides==7.7.0
-    # via jupyter-server
 packaging==24.2
-    # via
-    #   ipykernel
-    #   jupyter-server
-    #   jupyterlab
-    #   jupyterlab-server
-    #   nbconvert
-    #   pytest
-pandas==2.2.3
-    # via -r requirements.in
-pandocfilters==1.5.1
-    # via nbconvert
-parse==1.20.2
-    # via requests-html
-parso==0.8.4
-    # via jedi
-pexpect==4.9.0
-    # via ipython
-platformdirs==4.3.6
-    # via jupyter-core
+    # via pytest
 pluggy==1.5.0
     # via pytest
-prometheus-client==0.21.1
-    # via jupyter-server
-prompt-toolkit==3.0.48
-    # via ipython
 propcache==0.2.1
     # via
     #   aiohttp
     #   yarl
-psutil==6.1.0
-    # via ipykernel
-ptyprocess==0.7.0
-    # via
-    #   pexpect
-    #   terminado
-pure-eval==0.2.3
-    # via stack-data
-pycparser==2.22
-    # via cffi
 pydantic==2.10.3
     # via
     #   -r requirements.in
@@ -306,179 +110,47 @@ pydantic-extra-types==2.10.1
     # via -r requirements.in
 pydantic-settings==2.6.1
     # via -r requirements.in
-pyee==11.1.1
-    # via pyppeteer
-pygments==2.18.0
-    # via
-    #   ipython
-    #   nbconvert
-pyjwt==2.10.1
-    # via -r requirements.in
-pyppeteer==2.0.0
-    # via requests-html
-pyquery==2.0.1
-    # via requests-html
 pytest==8.3.4
     # via -r requirements.in
 python-dateutil==2.9.0.post0
     # via
-    #   arrow
     #   botocore
     #   dateparser
-    #   jupyter-client
     #   localstack-sdk-generated
-    #   pandas
 python-dotenv==1.0.1
     # via
     #   -r requirements.in
     #   pydantic-settings
-python-json-logger==2.0.7
-    # via jupyter-events
-python-memcached==1.62
-    # via -r requirements.in
 python-multipart==0.0.19
     # via -r requirements.in
 pytz==2024.2
-    # via
-    #   dateparser
-    #   pandas
-pyyaml==6.0.2
-    # via
-    #   -r requirements.in
-    #   jupyter-events
-pyzmq==26.2.0
-    # via
-    #   ipykernel
-    #   jupyter-client
-    #   jupyter-server
-redis==3.5.3
-    # via
-    #   -r requirements.in
-    #   rejson
-referencing==0.35.1
-    # via
-    #   jsonschema
-    #   jsonschema-specifications
-    #   jupyter-events
+    # via dateparser
 regex==2024.11.6
     # via dateparser
-rejson==0.5.6
-    # via -r requirements.in
-requests==2.32.3
-    # via
-    #   -r requirements.in
-    #   jupyterlab-server
-    #   requests-html
-requests-html==0.10.0
-    # via -r requirements.in
-rfc3339-validator==0.1.4
-    # via
-    #   jsonschema
-    #   jupyter-events
-rfc3986-validator==0.1.1
-    # via
-    #   jsonschema
-    #   jupyter-events
-rpds-py==0.22.3
-    # via
-    #   jsonschema
-    #   referencing
 s3transfer==0.10.4
     # via boto3
-send2trash==1.8.3
-    # via jupyter-server
 six==1.17.0
-    # via
-    #   python-dateutil
-    #   rejson
-    #   rfc3339-validator
+    # via python-dateutil
 sniffio==1.3.1
-    # via
-    #   -r requirements.in
-    #   anyio
+    # via anyio
 soupsieve==2.6
     # via beautifulsoup4
-stack-data==0.6.3
-    # via ipython
 termcolor==2.5.0
     # via -r requirements.in
-terminado==0.18.1
-    # via
-    #   jupyter-server
-    #   jupyter-server-terminals
-tinycss2==1.4.0
-    # via nbconvert
-tornado==6.4.2
-    # via
-    #   ipykernel
-    #   jupyter-client
-    #   jupyter-server
-    #   jupyterlab
-    #   notebook
-    #   terminado
-tqdm==4.67.1
-    # via pyppeteer
-traitlets==5.14.3
-    # via
-    #   comm
-    #   ipykernel
-    #   ipython
-    #   jupyter-client
-    #   jupyter-core
-    #   jupyter-events
-    #   jupyter-server
-    #   jupyterlab
-    #   matplotlib-inline
-    #   nbclient
-    #   nbconvert
-    #   nbformat
-types-python-dateutil==2.9.0.20241206
-    # via arrow
 typing-extensions==4.12.2
     # via
     #   -r requirements.in
     #   aiosqlite
     #   anyio
-    #   ipython
     #   localstack-sdk-generated
     #   pydantic
     #   pydantic-core
     #   pydantic-extra-types
-    #   pyee
-tzdata==2024.2
-    # via pandas
 tzlocal==5.2
     # via dateparser
-ujson==5.10.0
-    # via -r requirements.in
-uri-template==1.3.0
-    # via jsonschema
 urllib3==1.26.20
     # via
     #   botocore
     #   localstack-sdk-generated
-    #   pyppeteer
-    #   requests
-w3lib==2.2.1
-    # via requests-html
-wcwidth==0.2.13
-    # via prompt-toolkit
-webcolors==24.11.1
-    # via jsonschema
-webencodings==0.5.1
-    # via
-    #   bleach
-    #   tinycss2
-websocket-client==1.8.0
-    # via jupyter-server
-websockets==10.4
-    # via
-    #   -r requirements.in
-    #   pyppeteer
 yarl==1.18.3
     # via aiohttp
-zipp==3.21.0
-    # via importlib-metadata
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
