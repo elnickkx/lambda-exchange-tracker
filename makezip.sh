@@ -68,4 +68,13 @@ awslocal lambda add-permission \
 
 awslocal events put-targets --rule exchange-cron-event --targets file://target.json
 
+# Finally Pulling-up the API-Gateway resources and API Gateway integration services
+echo "\n Initializing the API Gateway Resources and API Gateway Integration services ..."
+awslocal cloudformation validate-template --template-body file://src/infra/resources.yaml
+
+awslocal cloudformation deploy \
+--stack-name lambda-api-gateway \
+--template-file src/infra/resources.yaml \
+--capabilities CAPABILITY_IAM
+
 echo "Everything done !!"
