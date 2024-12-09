@@ -14,10 +14,10 @@ import json
 
 from pydantic.main import BaseModel
 from boto3.dynamodb.conditions import Key
-from databases.utils import DynamoDBBase, wrap_model, handle_decimals
-from utils.helper import get_iso_timestamp
-from constants import DYNAMODB_SORT_KEY as _SK, DYNAMODB_PARTITION_KEY as _PK
-from models.pydantic_serializer import CurrencyExchangeModel
+from src.databases.utils import DynamoDBBase, wrap_model, handle_decimals
+from src.utils.helper import get_iso_timestamp
+from src.constants import DYNAMODB_SORT_KEY as _SK, DYNAMODB_PARTITION_KEY as _PK
+from src.models.pydantic_serializer import CurrencyExchangeModel
 
 
 class ModelResult(DynamoDBBase):

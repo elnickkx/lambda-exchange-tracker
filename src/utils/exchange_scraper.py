@@ -24,8 +24,8 @@ import pytz
 import pathlib
 from datetime import datetime, timedelta
 from src import constants
-from utils.decorators import retry_handling
-from databases import ExchangeDynamoDB
+from src.utils.decorators import retry_handling
+from src.databases import ExchangeDynamoDB
 
 ## configure the base logger settings for logging
 logger = logging.getLogger(__name__)

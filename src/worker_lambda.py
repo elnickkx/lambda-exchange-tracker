@@ -26,13 +26,12 @@ import distutils
 import re
 from io import BytesIO
 
-import constants
-import test_events as events
-from utils import helper
-from utils import exchange_scraper as exchange
-from models.pydantic_serializer import EventScrapeData, CurrencyExchangeModel
-from databases import ExchangeDynamoDB
-
+from src import constants
+from src import test_events as events
+from src.utils import helper
+from src.utils import exchange_scraper as exchange
+from src.models.pydantic_serializer import EventScrapeData, CurrencyExchangeModel
+from src.databases import ExchangeDynamoDB
 
 # setting the logger stack
 logging.getLogger().setLevel(logging.INFO)

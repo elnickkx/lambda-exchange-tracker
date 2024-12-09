@@ -10,7 +10,7 @@
 import boto3
 import localstack.sdk.aws
 
-from databases.dynamodb import _ExchangeSubTable
+from src.databases.dynamodb import _ExchangeSubTable
 
 client = localstack.sdk.aws.AWSClient()
 
