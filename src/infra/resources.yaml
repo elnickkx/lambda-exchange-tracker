@@ -1,91 +1,127 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: AWS API Gateway with a Lambda Integration
+
 Resources:
-  DDBTable:
-    Type: AWS::DynamoDB::Table
+  ApiGatewayRestApi:
+    Type: AWS::ApiGateway::RestApi
     Properties:
-      AttributeDefinitions:
-        -
-          AttributeName: "ArtistId"
-          AttributeType: "S"
-        -
-          AttributeName: "Concert"
-          AttributeType: "S"
-        -
-          AttributeName: "TicketSales"
-          AttributeType: "S"
-      KeySchema:
-        -
-          AttributeName: "ArtistId"
-          KeyType: "HASH"
-        -
-          AttributeName: "Concert"
-          KeyType: "RANGE"
-      GlobalSecondaryIndexes:
-        -
-          IndexName: "GSI"
-          KeySchema:
-            -
-              AttributeName: "TicketSales"
-              KeyType: "HASH"
-          Projection:
-            ProjectionType: "KEYS_ONLY"
-          ProvisionedThroughput:
-            ReadCapacityUnits: 5
-            WriteCapacityUnits: 5
-      ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
-  WriteCapacityScalableTarget:
-    Type: AWS::ApplicationAutoScaling::ScalableTarget
+      ApiKeySourceType: HEADER
+      Description: An API Gateway with a Lambda Integration
+      EndpointConfiguration:
+        Types:
+          - EDGE
+      Name: lambda-api-gateway
+
+  ApiGatewayResource:
+    Type: AWS::ApiGateway::Resource
     Properties:
-      MaxCapacity: 15
-      MinCapacity: 5
-      ResourceId: !Join
-        - /
-        - - table
-          - !Ref DDBTable
-      RoleARN: !GetAtt ScalingRole.Arn
-      ScalableDimension: dynamodb:table:WriteCapacityUnits
-      ServiceNamespace: dynamodb
-  ScalingRole:
+      ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
+      PathPart: 'generate'
+      RestApiId: !Ref ApiGatewayRestApi
+
+  ApiGatewayMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      ApiKeyRequired: false
+      AuthorizationType: NONE
+      HttpMethod: GET
+      Integration:
+        ConnectionType: INTERNET
+        Credentials: !GetAtt ApiGatewayIamRole.Arn
+        IntegrationHttpMethod: GET
+        PassthroughBehavior: WHEN_NO_MATCH
+        TimeoutInMillis: 29000
+        Type: AWS_PROXY
+        Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:000000000000:function:localstack-lambda-currency-exchange/invocations'
+      OperationName: 'lambda'
+      ResourceId: !Ref ApiGatewayResource
+      RestApiId: !Ref ApiGatewayRestApi
+
+  ApiGatewayModel:
+    Type: AWS::ApiGateway::Model
+    Properties:
+      ContentType: 'application/json'
+      RestApiId: !Ref ApiGatewayRestApi
+      Schema: {}
+
+  ApiGatewayStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId: !Ref ApiGatewayDeployment
+      Description: Lambda API Stage v0
+      RestApiId: !Ref ApiGatewayRestApi
+      StageName: 'dev'
+
+  ApiGatewayDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn: ApiGatewayMethod
+    Properties:
+      Description: Lambda API Deployment
+      RestApiId: !Ref ApiGatewayRestApi
+
+  ApiGatewayIamRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: "2012-10-17"
+        Version: '2012-10-17'
         Statement:
-          -
-            Effect: "Allow"
+          - Sid: ''
+            Effect: 'Allow'
             Principal:
               Service:
-                - application-autoscaling.amazonaws.com
+                - 'apigateway.amazonaws.com'
             Action:
-              - "sts:AssumeRole"
-      Path: "/"
+              - 'sts:AssumeRole'
+      Path: '/'
       Policies:
-        -
-          PolicyName: "root"
+        - PolicyName: LambdaAccess
           PolicyDocument:
-            Version: "2012-10-17"
+            Version: '2012-10-17'
             Statement:
-              -
-                Effect: "Allow"
-                Action:
-                  - "dynamodb:DescribeTable"
-                  - "dynamodb:UpdateTable"
-                  - "cloudwatch:PutMetricAlarm"
-                  - "cloudwatch:DescribeAlarms"
-                  - "cloudwatch:GetMetricStatistics"
-                  - "cloudwatch:SetAlarmState"
-                  - "cloudwatch:DeleteAlarms"
-                Resource: "*"
-  WriteScalingPolicy:
-    Type: AWS::ApplicationAutoScaling::ScalingPolicy
-    Properties:
-      PolicyName: WriteAutoScalingPolicy
-      PolicyType: TargetTrackingScaling
-      ScalingTargetId: !Ref WriteCapacityScalableTarget
-      TargetTrackingScalingPolicyConfiguration:
-        TargetValue: 50.0
-        ScaleInCooldown: 60
-        ScaleOutCooldown: 60
-        PredefinedMetricSpecification:
-          PredefinedMetricType: DynamoDBWriteCapacityUtilization
+              - Effect: 'Allow'
+                Action: 'lambda:*'
+                Resource: 'arn:aws:lambda:us-east-1:000000000000:function:localstack-lambda-currency-exchange'
+
+#  LocalCurrencyExchangeTable:
+#    Type: 'AWS::DynamoDB::Table'
+#    DeletionPolicy: Delete
+#    Properties:
+#      TableName: local_currency_exchange
+#      AttributeDefinitions:
+#        - AttributeName: pk
+#          AttributeType: S
+#        - AttributeName: sk
+#          AttributeType: S
+#      KeySchema:
+#        - AttributeName: pk
+#          KeyType: HASH
+#        - AttributeName: sk
+#          KeyType: RANGE
+#      ProvisionedThroughput:
+#        ReadCapacityUnits: 13
+#        WriteCapacityUnits: 13
+#
+#    LocalCurrencyExchangeRole:
+#      Type: 'AWS::IAM::Role'
+#      DeletionPolicy: Delete
+#      Properties:
+#        AssumeRolePolicyDocument:
+#          Version: '2012-10-17'
+#          Statement:
+#            - Effect: Allow
+#              Principal:
+#                Service:
+#                  - ec2.amazonaws.com
+#              Action:
+#                - 'sts:AssumeRole'
+#        Path: /
+#        Policies:
+#          - PolicyName: AccessDynamoDB
+#            PolicyDocument:
+#              Version: '2012-10-17'
+#              Statement:
+#                - Effect: Allow
+#                  Action:
+#                    - '*'
+#                  Resource: !GetAtt LocalCurrencyExchangeTable.Arn
