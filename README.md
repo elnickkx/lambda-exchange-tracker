@@ -44,8 +44,7 @@ Navigate to: `https://app.localstack.cloud/dashboard`
 
 
 ### 4. Architectural Design - Business Logic
-
-![img.png](img.png)
+![diagram 1](./diagram.jpg)
 
 > * **_Cloudwatch EventBridge_**
 >   * Event Rule defined to periodically trigger Lambda action to scrape the Currency Conversion (daily basis).
