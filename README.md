@@ -53,6 +53,7 @@ Navigate to: `https://app.localstack.cloud/dashboard`
 > * **_API Gateway Resources_**
 >   * Publically exposed **_GET_** method to fetch the **_Currency Spot Rate and Fluctuations_** for enlisted currencies.
 >   * API Gateway service, being hosted on **_https://localhost.localstack.cloud:4566_** domain to emulate the AWS ecosystem.
+>   * Public Endpoint: **_http://localhost:4566/_aws/execute-api/<apiId>/dev/api/v1/kaizen/fetch-currency-exchange/generate_**
 
 ### 5. Manual Modular Testing
 
